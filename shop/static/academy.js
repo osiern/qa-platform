@@ -79,33 +79,44 @@ function render() {
   updateProgress();
   if (selected === "advanced") {
     content.append(
-      node("h2", "API и инфраструктура"),
+      node("h2", "Backend и API"),
       node(
         "p",
-        "Это следующие задания. UI-наборы уже написаны; отдельные API, SQL, gRPC, Kafka и нагрузочные тесты ещё предстоит создать.",
+        "Здесь собраны интеграционные автотесты на Python и pytest. Они проверяют HTTP API и работу PostgreSQL, Redis, Kafka и gRPC на локальном Docker Compose стенде.",
       ),
     );
     const card = node("article", null, "card");
     card.append(
       list([
-        "HTTP / REST: /docs — проверить статус, JSON, ошибки регистрации, входа и корзины через httpx.",
-        "PostgreSQL: найти свой заказ и позиции через JOIN; проверить сумму, статус и остаток.",
-        "Redis: проверить свои ключи корзины, избранного и TTL сессии.",
-        "gRPC: сравнить Inventory с PostgreSQL; проверить отсутствующий товар и deadline.",
-        "Kafka: проследить payment_pending → paid, проверить повторную обработку и outbox.",
-        "Docker Compose: поднять стенд, проверить healthcheck и прочитать логи.",
-        "Git и CI: сохранить изменения, открыть PR, запустить workflow и изучить артефакты.",
-        "Allure: посмотреть отдельные шаги, причину падения, скриншот и trace.",
+        "HTTP / REST: статусы и схемы ответов, валидация, авторизация, каталог, корзина, заказы и Idempotency-Key.",
+        "PostgreSQL: сохранение данных, ограничения, транзакции, блокировки и гонка при покупке последнего товара.",
+        "Redis: сессии и корзина, типы ключей, TTL и согласованность с ответами API.",
+        "gRPC: контракт Inventory, авторизация, коды ошибок и сверка остатков с PostgreSQL.",
+        "Kafka: outbox, событие оплаты, обработка worker и повторная доставка.",
+        "Сквозной сценарий: заказ проходит через HTTP, PostgreSQL, Redis, gRPC, Kafka и worker.",
+        "Docker Compose: healthcheck, зависимости, порты, тома, service discovery и логи.",
+        "Allure и GitHub Actions: отчёт по шагам и запуск набора в CI.",
       ]),
     );
     content.append(card);
+    content.append(
+      node("h3", "Запуск"),
+      node("p", "Из корня проекта сначала подними стенд: sh scripts/dc.sh up -d --build"),
+      node("pre", "cd academy/backend-api-tests\n../../.venv/bin/python -m pytest"),
+    );
     const link = node("a", "Открыть Swagger");
     link.href = "/docs";
+    const testsLink = node("a", "Открыть backend/API-тесты на GitHub");
+    testsLink.href = "https://github.com/osiern/qa-platform/tree/main/academy/backend-api-tests";
+    testsLink.target = "_blank";
+    testsLink.rel = "noopener noreferrer";
     content.append(
       link,
+      document.createTextNode(" · "),
+      testsLink,
       node(
         "p",
-        "Маршрут: academy/docs/ROADMAP.md. Дополнительные сценарии: кнопка «Ещё 20 заданий» вверху. CI настроен для трёх стеков, но удалённый запуск нужно выполнить в своём репозитории.",
+        "Полный маршрут: academy/docs/ROADMAP.md. Дополнительные UI-сценарии — по ссылке «Ещё 20 заданий» вверху.",
       ),
     );
     return;

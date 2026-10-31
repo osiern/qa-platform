@@ -8,17 +8,17 @@
 | 2 | WebdriverIO/Mocha: hooks, локаторы, ожидания, Allure | Позитивный и негативный вход, корзина, один тест на сохранение | Нет слепых пауз и пустых зелёных проверок |
 | 3 | TS: типы, интерфейсы, Locator; Playwright Test | Те же 10 E2E и упражнение 11 в ts-playwright/tests | typecheck проходит; понимаешь fixtures и изоляцию context |
 | 4 | Python: функции, классы, dict/list, with, pytest | Те же 10 E2E и упражнение 11 в python-playwright/tests | Отличаешь fixture от test; параметризуешь валидацию |
-| 5 | HTTP/REST, httpx, JSON, коды, headers | Swagger /docs: регистрация, вход, товары, корзина | Проверяешь тело, статус и побочные эффекты |
-| 6 | SQL/PostgreSQL: WHERE/JOIN/GROUP BY, FK, транзакция | Изучи shop/db.py; запроси созданный заказ и его товары | Пишешь SELECT и понимаешь конкурентный остаток |
-| 7 | Redis: ключи, TTL, сессия, корзина | Создай сессию и корзину; посмотри ключи Redis для своего пользователя | Проверяешь свои ключи, не очищаешь всё хранилище |
-| 8 | gRPC/protobuf/status/deadline | shop/proto/inventory.proto; сравни Inventory с остатком в SQL | Сопоставляешь gRPC ответ с базой и проверяешь ошибку |
-| 9 | Kafka: producer/consumer, offset, outbox, повторы | shop/worker.py; проследи асинхронную оплату как дополнительный сценарий | Объясняешь переход payment_pending → paid |
-| 10 | Docker/Compose: image, container, network, volume, healthcheck | compose.yaml | Поднимаешь стенд, читаешь логи, отличаешь stop/down/down -v |
-| 11 | Git: diff, commit, branch, pull request | Собственный репозиторий учебного магазина | Небольшая ветка, понятный diff, результаты проверки |
-| 12 | Одна CI-система, Allure и артефакты | .github/workflows/academy.yml | Pipeline запускает учебные тесты и хранит отчёт |
+| 5 | HTTP/REST, httpx, JSON, статусы и контракты | `backend-api-tests/tests/api/test_http_api.py` | Проверяешь статусы, схемы, валидацию, права и бизнес-сценарии |
+| 6 | SQL/PostgreSQL: WHERE/JOIN/GROUP BY, FK, транзакции и блокировки | `backend-api-tests/tests/backend/database/` | Проверяешь запись данных, ограничения и конкурентную покупку |
+| 7 | Redis: ключи, TTL, сессии и корзина | `backend-api-tests/tests/backend/redis/` | Проверяешь свои ключи и согласованность с API |
+| 8 | gRPC/protobuf/status/deadline | `backend-api-tests/tests/backend/grpc/` | Сопоставляешь ответ Inventory с базой и проверяешь ошибки |
+| 9 | Kafka: producer/consumer, offset, outbox и повторы | `backend-api-tests/tests/backend/kafka/` | Проверяешь событие оплаты и обработку worker |
+| 10 | Docker/Compose: контейнеры, сеть, volume и healthcheck | `backend-api-tests/tests/platform/` и `compose.yaml` | Проверяешь готовность сервисов и конфигурацию стенда |
+| 11 | Сквозные интеграционные проверки | `backend-api-tests/tests/e2e/` | Прослеживаешь заказ через HTTP, БД, Redis, gRPC и Kafka |
+| 12 | Git, GitHub Actions, Allure и артефакты | `.github/workflows/academy.yml` | Запускаешь наборы в CI и открываешь отчёты Allure |
 | 13 | Дополнительные навыки | Контракт API/OpenAPI, миграции Alembic, линтер, accessibility, k6, Linux/logs | Добавляешь по одному рабочему примеру, а не только названия в резюме |
 
-Этапы 1–4 используют учебные примеры и задания в academy. Этапы 5–12 опираются на код самого магазина и инфраструктуру проекта. Отдельных старых тестовых наборов в проекте нет. Этап 13 — задания на расширение; эти технологии не объявляются уже реализованными.
+Этапы 1–4 посвящены UI-автоматизации на трёх языках. Этапы 5–12 используют реализованный интеграционный набор `academy/backend-api-tests` и инфраструктуру магазина. Этап 13 — направления для дальнейшего расширения; эти технологии не объявляются уже реализованными.
 
 ## Как это связано с твоей работой
 
