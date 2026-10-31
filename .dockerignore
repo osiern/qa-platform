@@ -1,0 +1,12 @@
+.venv
+.browsers
+__pycache__
+.pytest_cache
+artifacts
+.git
+.env
+
+**/node_modules
+**/artifacts
+**/__pycache__
+**/.pytest_cache

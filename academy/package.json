@@ -1,0 +1,38 @@
+{
+  "name": "qa-market-academy",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test:js": "wdio run js-wdio/wdio.conf.js",
+    "answers:js": "wdio run js-wdio/wdio.conf.js",
+    "practice:js": "wdio run js-wdio/wdio.conf.js --spec js-wdio/tests/11-practice.spec.js",
+    "test:ts": "playwright test -c ts-playwright/playwright.config.ts --grep-invert \"Практика:\"",
+    "answers:ts": "npm run test:ts",
+    "practice:ts": "playwright test -c ts-playwright/playwright.config.ts 11-practice.spec.ts",
+    "typecheck": "tsc --noEmit -p ts-playwright/tsconfig.json",
+    "report": "playwright show-report artifacts/playwright-report",
+    "allure:generate": "node support/generate-report.mjs",
+    "allure:open": "allure open artifacts/allure-report --host 127.0.0.1",
+    "format": "prettier --write \"js-wdio/**/*.js\" \"ts-playwright/**/*.ts\" \"support/*.{mjs,mts}\""
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/node": "24.10.0",
+    "@wdio/allure-reporter": "9.12.6",
+    "@wdio/cli": "9.12.6",
+    "@wdio/globals": "9.12.6",
+    "@wdio/local-runner": "9.12.6",
+    "@wdio/mocha-framework": "9.12.6",
+    "@wdio/spec-reporter": "9.12.6",
+    "allure": "3.22.1",
+    "allure-playwright": "3.4.1",
+    "pg": "8.16.3",
+    "prettier": "3.6.2",
+    "redis": "5.8.2",
+    "typescript": "5.9.3",
+    "webdriverio": "9.12.6"
+  }
+}

@@ -1,0 +1,13 @@
+fastapi>=0.115,<1
+uvicorn>=0.34,<1
+SQLAlchemy>=2.0,<2.1
+psycopg[binary]>=3.2,<4
+redis>=5,<7
+kafka-python>=2.2,<3
+grpcio>=1.70,<2
+grpcio-tools>=1.70,<2
+httpx>=0.28,<1
+pytest>=8,<10
+playwright>=1.50,<2
+allure-pytest>=2.13,<3
+PyYAML>=6,<7
